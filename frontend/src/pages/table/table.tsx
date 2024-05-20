@@ -53,18 +53,28 @@ export default function Table() {
           setRawData(data?.value);
         }
       }
-      const realData = (await fetch(
-        "http://localhost:3001/api/database/post/getJobListWithFilter",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      ).then((res) => res.json())) as unknown as { value: Todo[] };
 
-      localStorage.setItem("data", JSON.stringify(realData.value));
-      setRawData(realData.value);
+      try {
+        const realData = (await fetch(
+          "http://localhost:3001/api/database/post/getJobListWithFilter",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+          .then((res) => res.json())
+          .catch((err: any) => console.log("error", err))) as unknown as {
+          value: Todo[];
+        };
+        if (realData?.value?.length > 0) {
+          localStorage.setItem("data", JSON.stringify(realData.value));
+          setRawData(realData.value);
+        }
+      } catch (e) {
+        console.log("error", e);
+      }
     })();
   }, [setRawData]);
 
