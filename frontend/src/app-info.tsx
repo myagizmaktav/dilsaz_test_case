@@ -1,5 +1,4 @@
 const appInfo = {
-    title: 'Frontend'
+  title: "Test Case",
 };
 export default appInfo;
-
