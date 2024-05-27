@@ -6,7 +6,7 @@ const router = express.Router();
 const path = "/api/database/post/getJobListWithFilter";
 router.get(path, async (req, res) => {
   const data = JSON.parse(
-    fs.readFileSync(getDataFolderPath() + "/todo.json", "utf8")
+    fs.readFileSync(getDataFolderPath() + "/priority.json", "utf8")
   ) as Todo[];
 
   res.status(200).json({
