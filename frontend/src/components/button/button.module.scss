@@ -1,0 +1,24 @@
+.button{ 
+    border-radius: 5px;
+    color: #FFF;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 0.5rem 1rem; 
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+    white-space: nowrap;    
+    &:hover{
+        background-color: #0F6AD4;
+        border-color: #0F6AD4;
+    }
+     
+    &:active{
+        background-color: #0C5AAB;
+        border-color: #0C5AAB;
+        padding: calc(0.5rem - 1px) calc(1rem - 1px);
+    }
+}
