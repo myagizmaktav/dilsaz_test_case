@@ -1,5 +1,5 @@
 import styles from "./button.module.scss";
-
+import { JSX } from "react";
 type ButtonProps = {
   backgroundColor?: string;
   title: string | JSX.Element;

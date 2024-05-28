@@ -1,8 +1,10 @@
 import Head from "next/head";
 
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+
 import { Button } from "@/components/button/button";
+import { Input } from "@/components/input/input";
+import { Select } from "@/components/select/select";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +20,21 @@ export default function Home() {
       <main className={` ${inter.className}`}>
         <div>hello</div>
         <Button title="Click me" backgroundColor="red" />
+        <div
+          style={{
+            width: "20%",
+          }}
+        >
+          <Input />
+        </div>
+
+        <div
+          style={{
+            width: "20%",
+          }}
+        >
+          <Select />
+        </div>
       </main>
     </>
   );
