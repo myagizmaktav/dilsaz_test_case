@@ -1,9 +1,9 @@
 import { atom } from "jotai";
 import { Priority } from "@/types/priorityType";
 
-const rawPriorityAtom = atom<Priority[]>([]);
+export const rawPriorityAtom = atom<Priority[]>([]);
 
-const pullPriorityAtom = atom(
+export const pullPriorityAtom = atom(
   (get) => get(rawPriorityAtom),
   (get, set) => {
     const isSSR = typeof window === "undefined";

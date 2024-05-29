@@ -3,7 +3,7 @@ import fs from "fs";
 import { getDataFolderPath } from "../../../../utils/getDataFolderPath";
 import { Todo } from "../../../../types/todoTypes";
 const router = express.Router();
-const path = "/api/database/post/getJobListWithFilter";
+const path = "/api/database/post/getPriorityList";
 router.get(path, async (req, res) => {
   const data = JSON.parse(
     fs.readFileSync(getDataFolderPath() + "/priority.json", "utf8")
