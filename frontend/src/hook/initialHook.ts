@@ -1,18 +1,19 @@
-import { rawPriorityAtom } from "@/data/priority";
+import { priorityAtom } from "@/data/priority";
 import { sortingAtom } from "@/data/sorting";
-import { rawTodoAtom } from "@/data/todo";
+import { rawTodoAtom, todoAtom } from "@/data/todo";
 import { Todo } from "@/types/todoType";
 import { fetcher } from "@/utils/fetcher";
 import { setStatusSortData } from "@/utils/sortStatusData";
 import { sortTextData } from "@/utils/sortTextData";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect } from "react";
 import useSWR from "swr";
 
 export const useInitialHook = () => {
   const [rawTodo, setRawTodo] = useAtom(rawTodoAtom);
-  const [priority, setPriority] = useAtom(rawPriorityAtom);
+  const [priority, setPriority] = useAtom(priorityAtom);
   const sortingPosition = useAtomValue(sortingAtom);
+  const setTodo = useSetAtom(todoAtom);
 
   useEffect(() => {
     if (rawTodo?.length) {
@@ -45,10 +46,12 @@ export const useInitialHook = () => {
         );
       }
 
-      setRawTodo(data);
+      // const nextData = produce(rawTodo, () => {
+      //   return data;
+      // });
+      setTodo(data);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setRawTodo, setStatusSortData, sortTextData, sortingPosition, rawTodo]);
+  }, [setRawTodo, sortingPosition, rawTodo, priority, setTodo]);
 
   const host = process.env.NEXT_PUBLIC_HOST || "http://localhost:3001";
 
@@ -56,21 +59,27 @@ export const useInitialHook = () => {
     `${host}/api/database/post/getJobListWithFilter`,
     fetcher
   );
-  if (todoData) {
-    setRawTodo(todoData.value);
-  }
-  if (todoError) {
-    console.log(todoError);
+  if (rawTodo.length === 0) {
+    if (todoData) {
+      setRawTodo(todoData.value);
+      setTodo(todoData.value);
+    }
+    if (todoError) {
+      console.error(todoError);
+    }
   }
 
   const { data: priorityData, error: priorityError } = useSWR(
     `${host}/api/database/post/getPriorityList`,
     fetcher
   );
-  if (priorityData) {
-    setPriority(priorityData.value);
-  }
-  if (priorityError) {
-    console.log(priorityError);
+  console.log(priorityData);
+  if (priority.length === 0) {
+    if (priorityData) {
+      setPriority(priorityData.value);
+    }
+    if (priorityError) {
+      console.error(priorityError);
+    }
   }
 };

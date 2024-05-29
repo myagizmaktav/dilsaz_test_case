@@ -3,7 +3,7 @@ import React from "react";
 import { SortIcon } from "@/assets/sortIcon";
 import { Todo } from "@/types/todoType";
 import { TableTextCell } from "./TableTextCell";
-import { Sorting } from "@/types/sortingTypes";
+import { Sorting } from "@/types/sortingType";
 
 type TableTextColumnProps = {
   field: keyof Todo;
@@ -34,14 +34,14 @@ export const TableTextColumn = ({
           justifyContent: "space-between",
         }}
       >
-        <text
+        <p
           style={{
             color: "gray",
             fontWeight: "bold",
           }}
         >
           {field.toUpperCase()}
-        </text>
+        </p>
         <div
           onClick={() => {
             if (sortingPosition.field !== `${field}`) {

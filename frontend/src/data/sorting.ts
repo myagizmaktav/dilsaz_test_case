@@ -1,9 +1,9 @@
-import { Sorting } from "@/types/sortingTypes";
+import { Sorting } from "@/types/sortingType";
 import { atom } from "jotai";
 
 export const sortingAtom = atom<Sorting>({
   position: "asc",
   field: "created_at",
   search: "",
-  priority: "created_at",
+  priority: "Priority(All)",
 });

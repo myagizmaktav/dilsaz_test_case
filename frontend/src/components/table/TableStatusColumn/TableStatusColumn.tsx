@@ -1,7 +1,7 @@
 import { Todo } from "@/types/todoType";
 import { TableStatusCell } from "./TableStatusCell";
 import React from "react";
-import { Sorting } from "@/types/sortingTypes";
+import { Sorting } from "@/types/sortingType";
 import { SortIcon } from "@/assets/sortIcon";
 
 type TableStatusColumnProps = {

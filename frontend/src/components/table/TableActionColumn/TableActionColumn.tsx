@@ -1,12 +1,18 @@
 import React from "react";
-import { DeleteIcon } from "../../../assets/deleteIcon";
-import { EditIcon } from "../../../assets/editIcon";
-import { useZustandStore } from "../../../data/data";
+import { DeleteIcon } from "@/assets/deleteIcon";
+import { EditIcon } from "@/assets/editIcon";
+import { Todo } from "@/types/todoType";
+import { Modal } from "@/types/modalType";
 
-export const TableActionColumn = () => {
-  const setPopup = useZustandStore((state) => state.setPopup);
-  const data = useZustandStore((state) => state.data);
-
+type TableActionColumnProps = {
+  data: Todo[];
+  // eslint-disable-next-line no-unused-vars
+  setPopup: (args: Modal) => void;
+};
+export const TableActionColumn = ({
+  data = [],
+  setPopup,
+}: TableActionColumnProps) => {
   return (
     <div>
       <div
