@@ -46,9 +46,6 @@ export const useInitialHook = () => {
         );
       }
 
-      // const nextData = produce(rawTodo, () => {
-      //   return data;
-      // });
       setTodo(data);
     }
   }, [setRawTodo, sortingPosition, rawTodo, priority, setTodo]);
@@ -73,7 +70,7 @@ export const useInitialHook = () => {
     `${host}/api/database/post/getPriorityList`,
     fetcher
   );
-  console.log(priorityData);
+
   if (priority.length === 0) {
     if (priorityData) {
       setPriority(priorityData.value);

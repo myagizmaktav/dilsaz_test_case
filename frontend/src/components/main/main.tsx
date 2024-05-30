@@ -2,12 +2,17 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import { useInitialHook } from "@/hook/initialHook";
 import styles from "./main.module.scss";
+
 import { Tables } from "../tables/tables";
 import { Modal } from "../modals/modal/modal";
+import { Filtering } from "../filtering/filtering";
+import { useWindowSize } from "@/hook/useDimension";
+
 const inter = Inter({ subsets: ["latin"] });
+
 export const Main = () => {
   useInitialHook();
-
+  const { isBigScreen } = useWindowSize();
   return (
     <>
       <Head>
@@ -16,9 +21,16 @@ export const Main = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={` ${inter.className} ${styles.toMiddle}`}>
-        <Modal />
-        <Tables />
+      <main className={` ${inter.className} ${styles.mainWrapper}`}>
+        {isBigScreen && <div className={styles.side} />}
+
+        <div className={styles.toMiddle}>
+          <Filtering></Filtering>
+          <Modal />
+          <Tables />
+        </div>
+
+        {isBigScreen && <div className={styles.side} />}
       </main>
     </>
   );

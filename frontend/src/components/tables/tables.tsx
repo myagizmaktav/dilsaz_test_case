@@ -9,11 +9,10 @@ import { modalAtom } from "@/data/modal";
 
 export const Tables = () => {
   const todo = useAtomValue(todoAtom);
-
-  const dimensions = useWindowSize();
   const [sortingPosition, setSortingPosition] = useAtom(sortingAtom);
   const setPopup = useSetAtom(modalAtom);
-  const isBigScreen = (dimensions?.width || 0) > 768;
+  const { isBigScreen } = useWindowSize();
+
   return (
     <div
       style={{
