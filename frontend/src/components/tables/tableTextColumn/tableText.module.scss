@@ -30,3 +30,14 @@ height: 175px;
     color:gray;
     font-weight: bold;
 }
+
+.sortIcon{
+ display: block;
+}
+
+@media screen and (max-width: 1500px){
+    .sortIcon{
+        display: none;
+    }
+    
+}

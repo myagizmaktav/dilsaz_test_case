@@ -8,8 +8,10 @@ import { Button } from "../button/button";
 import { useState } from "react";
 import { rawTodoAtom } from "@/data/todo";
 import uuid4 from "uuid4";
+import { useWindowSize } from "@/hook/useDimension";
 
 export const Add = () => {
+  const { isBigScreen } = useWindowSize();
   const priority = useAtomValue(priorityAtom);
 
   const setRawTodo = useSetAtom(rawTodoAtom);
@@ -21,7 +23,15 @@ export const Add = () => {
       <div>
         <h1>Task Manager</h1>
       </div>
-      <div className={styles.filteringWrapper}>
+      <div
+        className={styles.filteringWrapper}
+        style={{
+          flexDirection: isBigScreen ? "row" : "column",
+          justifyContent: isBigScreen ? "space-between" : "start",
+          alignContent: isBigScreen ? "center" : "start",
+          gap: isBigScreen ? 0 : "10px",
+        }}
+      >
         <div className={`${styles.input} `}>
           <Input
             error={isInputError}
@@ -42,7 +52,13 @@ export const Add = () => {
           />
         </div>
 
-        <div className={styles.select}>
+        <div
+          className={styles.select}
+          style={{
+            marginLeft: isBigScreen ? "1rem" : "0",
+            width: isBigScreen ? "200px" : "100%",
+          }}
+        >
           <Select
             options={[
               ...priority.map((p) => {
@@ -58,7 +74,13 @@ export const Add = () => {
           />
         </div>
 
-        <div className={styles.button}>
+        <div
+          className={styles.button}
+          style={{
+            marginLeft: isBigScreen ? "20px" : "auto",
+            marginRight: isBigScreen ? "0" : "auto",
+          }}
+        >
           <Button
             title={"+ Create"}
             onclick={() => {

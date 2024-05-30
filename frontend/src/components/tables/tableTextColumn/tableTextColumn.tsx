@@ -42,6 +42,7 @@ export const TableTextColumn = ({
               });
             }
           }}
+          className={styles.sortIcon}
           style={{
             cursor: "pointer",
             transform:

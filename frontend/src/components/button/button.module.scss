@@ -22,3 +22,21 @@
         padding: calc(0.5rem - 1px) calc(1rem - 1px);
     }
 }
+
+@media screen and (max-width: 1500px){
+    .button{
+        padding: 0.5rem 0.5rem;
+    }    
+}
+
+@media screen and (max-width: 1200px){
+    .button{
+        padding: 0.5rem 0.3rem;
+    }    
+}
+
+@media screen and (max-width: 768px){
+    .button{
+        padding: 0.5rem 0.75rem; 
+    }    
+}

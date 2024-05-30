@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
+
 import { useInitialHook } from "@/hook/initialHook";
 import styles from "./main.module.scss";
 import { Tables } from "../tables/tables";
@@ -9,9 +9,17 @@ import { useWindowSize } from "@/hook/useDimension";
 import { Add } from "../add/add";
 import { todoAtom } from "@/data/todo";
 import { useAtomValue } from "jotai";
-import DynamicModal from "../modals/modal/dynamicModal";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
+import { RobotoFont } from "@/utils/font";
+export const DynamicModal = dynamic(
+  //@ts-ignore
+  () => import("../modals/modal/modal"),
+  {
+    suspense: true,
+  }
+);
 
 export const Main = () => {
   useInitialHook();
@@ -25,7 +33,7 @@ export const Main = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={` ${inter.className} ${styles.mainWrapper}`}>
+      <main className={` ${RobotoFont.className} ${styles.mainWrapper}`}>
         {isBigScreen && <div className={styles.side} />}
 
         <div className={styles.toMiddle}>
@@ -33,7 +41,9 @@ export const Main = () => {
           <Filtering />
 
           <Tables todo={todo} />
-          <DynamicModal />
+          <Suspense>
+            <DynamicModal />
+          </Suspense>
         </div>
 
         {isBigScreen && <div className={styles.side} />}

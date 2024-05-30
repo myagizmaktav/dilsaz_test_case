@@ -2,10 +2,13 @@ import { modalAtom } from "@/data/modal";
 import { todoAtom, rawTodoAtom } from "@/data/todo";
 import { useAtom, useAtomValue } from "jotai";
 import { priorityAtom } from "@/data/priority";
-import { Select } from "../../select/select";
+
 import { useState } from "react";
-import { Button } from "../../button/button";
+
 import styles from "./editModal.module.scss";
+import { RobotoFont } from "@/utils/font";
+import { Select } from "@/components/select/select";
+import { Button } from "@/components/button/button";
 export const EditModal = () => {
   const [popup, setPopup] = useAtom(modalAtom);
   const [data, setData] = useAtom(todoAtom);
@@ -22,7 +25,7 @@ export const EditModal = () => {
   };
 
   return (
-    <div className={styles.editWrapper}>
+    <div className={`${RobotoFont.className} ${styles.editWrapper}`}>
       <div
         style={{
           width: "100%",
@@ -80,7 +83,7 @@ export const EditModal = () => {
             setRawData(newRawData);
             hideInfo();
           }}
-        ></Button>
+        />
       </div>
     </div>
   );

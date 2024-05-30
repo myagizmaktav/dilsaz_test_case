@@ -2,12 +2,14 @@ import { modalAtom } from "@/data/modal";
 import { useAtom } from "jotai";
 
 import ReactModal from "react-modal";
-import { AddModal } from "../addModal/addModal";
+
 import { DeleteModal } from "../deleteModal/deleteModal";
 import { EditModal } from "../editModal/editModal";
 import { CloseIcon } from "@/assets/closeIcon";
 
 import styles from "./modal.module.scss";
+
+import { RobotoFont } from "@/utils/font";
 const customStyles = {
   content: {
     top: "50%",
@@ -19,7 +21,7 @@ const customStyles = {
   },
 };
 
-export function Modal() {
+function Modal() {
   const [popup, setPopup] = useAtom(modalAtom);
   ReactModal.setAppElement("main");
   const hideInfo = () => {
@@ -37,7 +39,7 @@ export function Modal() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div className={styles.modalWrapper}>
+        <div className={`${RobotoFont.className} ${styles.modalWrapper}`}>
           <div className={styles.titleWrapper}>
             <p>EDIT</p>
 
@@ -47,7 +49,6 @@ export function Modal() {
           </div>
           <div className={styles.modalBar} />
 
-          {popup.type === "Add" && <AddModal />}
           {popup.type === "Delete" && <DeleteModal />}
           {popup.type === "Edit" && <EditModal />}
         </div>
@@ -55,3 +56,5 @@ export function Modal() {
     </div>
   );
 }
+
+export default Modal;

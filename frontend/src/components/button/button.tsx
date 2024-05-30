@@ -13,7 +13,10 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      style={{ backgroundColor, border: `1px solid ${backgroundColor}` }}
+      style={{
+        backgroundColor,
+        border: `1px solid ${backgroundColor}`,
+      }}
       className={styles.button}
       onClick={onclick}
     >

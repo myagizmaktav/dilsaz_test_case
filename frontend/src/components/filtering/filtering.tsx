@@ -4,8 +4,10 @@ import { Select } from "../select/select";
 import { priorityAtom } from "@/data/priority";
 import styles from "./filtering.module.scss";
 import { sortingAtom } from "@/data/sorting";
+import { useWindowSize } from "@/hook/useDimension";
 
 export const Filtering = () => {
+  const { isBigScreen } = useWindowSize();
   const priority = useAtomValue(priorityAtom);
   const [sorting, setSorting] = useAtom(sortingAtom);
 
@@ -29,7 +31,13 @@ export const Filtering = () => {
           />
         </div>
 
-        <div className={styles.select}>
+        <div
+          className={styles.select}
+          style={{
+            width: isBigScreen ? "200px" : "100px",
+            marginLeft: isBigScreen ? "20px" : "10px",
+          }}
+        >
           <Select
             options={[
               { value: "Priority(All)", label: "Priority(All)" },

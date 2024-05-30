@@ -41,6 +41,7 @@ export const TableStatusColumn = ({
               });
             }
           }}
+          className={styles.sortIcon}
           style={{
             cursor: "pointer",
             transform:
