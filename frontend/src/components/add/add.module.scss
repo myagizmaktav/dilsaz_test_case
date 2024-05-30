@@ -22,14 +22,21 @@
     width: 200px;
     margin-left: 20px;
 }
-
-.filterWrapper{
-    font-size: 1rem;
-    width: 100%;
+.button{
     display: flex;
-    margin-bottom: 20px;
-    flex-direction:  column;
-    
-    
-    }
+    align-items: center;
+     justify-content: center;
+    width: 100px;
+    margin-left: 20px;
+}
 
+
+.addWrapper{
+font-size: 1rem;
+width: 100%;
+display: flex;
+margin-bottom: 20px;
+flex-direction:  column;
+
+
+}

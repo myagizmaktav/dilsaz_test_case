@@ -10,35 +10,41 @@ export const Filtering = () => {
   const [sorting, setSorting] = useAtom(sortingAtom);
 
   return (
-    <div className={styles.filteringWrapper}>
-      <div className={styles.input}>
-        <Input
-          onChange={(e) => {
-            console.log(e.target.value);
-            setSorting((prev) => ({
-              ...prev,
-              search: e.target.value,
-            }));
-          }}
-          value={sorting.search}
-        />
+    <div className={styles.filterWrapper}>
+      <div>
+        <h1>Filter</h1>
       </div>
 
-      <div className={styles.select}>
-        <Select
-          options={[
-            { value: "Priority(All)", label: "Priority(All)" },
-            ...priority.map((p) => {
-              return { value: p.status, label: p.status };
-            }),
-          ]}
-          onchange={(e) => {
-            setSorting((prev) => ({
-              ...prev,
-              priority: e.target.value,
-            }));
-          }}
-        />
+      <div className={styles.filteringWrapper}>
+        <div className={styles.input}>
+          <Input
+            placeholder="Search"
+            onChange={(e) => {
+              setSorting((prev) => ({
+                ...prev,
+                search: e.target.value,
+              }));
+            }}
+            value={sorting.search}
+          />
+        </div>
+
+        <div className={styles.select}>
+          <Select
+            options={[
+              { value: "Priority(All)", label: "Priority(All)" },
+              ...priority.map((p) => {
+                return { value: p.status, label: p.status };
+              }),
+            ]}
+            onchange={(e) => {
+              setSorting((prev) => ({
+                ...prev,
+                priority: e.target.value,
+              }));
+            }}
+          />
+        </div>
       </div>
     </div>
   );

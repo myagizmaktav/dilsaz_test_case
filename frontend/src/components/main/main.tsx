@@ -2,11 +2,11 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import { useInitialHook } from "@/hook/initialHook";
 import styles from "./main.module.scss";
-
 import { Tables } from "../tables/tables";
 import { Modal } from "../modals/modal/modal";
 import { Filtering } from "../filtering/filtering";
 import { useWindowSize } from "@/hook/useDimension";
+import { Add } from "../add/add";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +25,8 @@ export const Main = () => {
         {isBigScreen && <div className={styles.side} />}
 
         <div className={styles.toMiddle}>
-          <Filtering></Filtering>
+          <Add />
+          <Filtering />
           <Modal />
           <Tables />
         </div>
