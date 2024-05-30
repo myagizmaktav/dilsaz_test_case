@@ -1,0 +1,32 @@
+
+
+.textCellWrapper{
+padding-left: 5px;
+display: flex;
+align-items: center;
+height: 175px;
+}
+
+.textCellText{
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    white-space: normal;
+    width: 100%;
+
+}
+
+
+
+.textTableColumnWrapper{
+    background: #e4eafd;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 5px;
+}
+.textTableColumnTitle{
+    color:gray;
+    font-weight: bold;
+}

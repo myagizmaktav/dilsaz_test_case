@@ -58,10 +58,16 @@ export const useInitialHook = () => {
   );
   if (rawTodo.length === 0) {
     if (todoData) {
-      setRawTodo(todoData.value);
-      setTodo(todoData.value);
+      localStorage.setItem("todo", JSON.stringify(todoData.value));
+      setRawTodo([...todoData.value]);
+      setTodo([...todoData.value]);
     }
     if (todoError) {
+      const tempData = localStorage.getItem("todo");
+      if (tempData !== "undefined" && tempData) {
+        setRawTodo(JSON.parse(tempData));
+        setTodo(JSON.parse(tempData));
+      }
       console.error(todoError);
     }
   }
@@ -73,9 +79,16 @@ export const useInitialHook = () => {
 
   if (priority.length === 0) {
     if (priorityData) {
-      setPriority(priorityData.value);
+      localStorage.setItem("priority", JSON.stringify(priorityData.value));
+
+      setPriority([...priorityData.value]);
     }
     if (priorityError) {
+      const tempData = localStorage.getItem("priority");
+      if (tempData !== "undefined" && tempData) {
+        setPriority(JSON.parse(tempData));
+      }
+
       console.error(priorityError);
     }
   }

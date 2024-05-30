@@ -1,10 +1,11 @@
-import { Todo } from "@/types/todoType";
-import { TableStatusCell } from "./TableStatusCell";
 import React from "react";
-import { Sorting } from "@/types/sortingType";
-import { SortIcon } from "@/assets/sortIcon";
 
-type TableStatusColumnProps = {
+import { SortIcon } from "@/assets/sortIcon";
+import { Todo } from "@/types/todoType";
+import { Sorting } from "@/types/sortingType";
+import { TableTextCell } from "./tableTextCell";
+import styles from "./tableText.module.scss";
+type TableTextColumnProps = {
   field: keyof Todo;
   ratio?: number;
   isDate?: boolean;
@@ -14,31 +15,17 @@ type TableStatusColumnProps = {
   setSortingPosition: (value: Sorting) => void;
 };
 
-export const TableStatusColumn = ({
+export const TableTextColumn = ({
   field,
+  isDate,
   data = [],
   setSortingPosition,
   sortingPosition,
-}: TableStatusColumnProps) => {
+}: TableTextColumnProps) => {
   return (
     <div>
-      <div
-        style={{
-          background: "#e4eafd",
-          paddingLeft: "5px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <p
-          style={{
-            color: "gray",
-            fontWeight: "bold",
-          }}
-        >
-          {field.toUpperCase()}
-        </p>
+      <div className={styles.textTableColumnWrapper}>
+        <p className={styles.textTableColumnTitle}>{field.toUpperCase()}</p>
         <div
           onClick={() => {
             if (sortingPosition.field !== `${field}`) {
@@ -69,7 +56,11 @@ export const TableStatusColumn = ({
       </div>
       {data?.map((item) => (
         <React.Fragment key={item.id}>
-          <TableStatusCell value={item[field]} />
+          <TableTextCell
+            value={
+              isDate ? new Date(item[field]).toLocaleDateString() : item[field]
+            }
+          />
         </React.Fragment>
       ))}
     </div>

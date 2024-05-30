@@ -13,10 +13,7 @@ export const Add = () => {
   const priority = useAtomValue(priorityAtom);
 
   const setRawTodo = useSetAtom(rawTodoAtom);
-  const [newDataValue, setNewDataValue] = useState({
-    description: "",
-    status: "",
-  });
+  const [isInputError, setIsInputError] = useState(false);
   const [selectValue, setSelectValue] = useState("Urgent");
   const [inputValue, setInputValue] = useState("");
   return (
@@ -25,16 +22,23 @@ export const Add = () => {
         <h1>Task Manager</h1>
       </div>
       <div className={styles.filteringWrapper}>
-        <div className={styles.input}>
+        <div className={`${styles.input} `}>
           <Input
+            error={isInputError}
             onChange={(e) => {
-              setInputValue(e.target.value);
-              setNewDataValue((prev) => ({
-                ...prev,
-                description: e.target.value,
-              }));
+              let value = e.target.value;
+              if (value.match(/[^a-zA-Z0-9' 'wığüşöçĞÜŞÖÇİ]/g)) {
+                value = value.replace(/[^a-zA-Z0-9wığüşöçĞÜŞÖÇİ]/g, "");
+              }
+              if (value.length) {
+                setIsInputError(false);
+              }
+              setInputValue(value);
             }}
             value={inputValue}
+            placeholder={
+              isInputError ? "Please fill the input" : "Add a task..."
+            }
           />
         </div>
 
@@ -47,30 +51,34 @@ export const Add = () => {
             ]}
             value={selectValue}
             onchange={(e) => {
-              setSelectValue(e.target.value);
-              setNewDataValue((prev) => ({
-                ...prev,
-                status: e.target.value,
-              }));
+              let value = e.target.value;
+              console.log(value);
+              setSelectValue(value);
             }}
           />
         </div>
 
         <div className={styles.button}>
           <Button
-            title={"+Create"}
+            title={"+ Create"}
             onclick={() => {
+              if (inputValue === "" || selectValue === "") {
+                setIsInputError(true);
+                return;
+              }
+
               setRawTodo((prev) => [
                 ...prev,
                 {
-                  description: newDataValue.description,
-                  status: newDataValue.status,
+                  description: inputValue,
+                  status: selectValue,
                   id: uuid4(),
                   created_at: new Date().toISOString(),
                   updated_at: new Date().toISOString(),
                 },
               ]);
-              console.log(newDataValue);
+              setInputValue("");
+              setSelectValue("Urgent");
             }}
           />
         </div>

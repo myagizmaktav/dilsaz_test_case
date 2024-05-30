@@ -26,18 +26,6 @@
     }
 
 
-    &.error{
-        border-color: #f00;
-    }
-
-
-
-    &.disabled{
-        background-color: #f0f0f0;
-        color: #999;
-        cursor: not-allowed;
-    }
-
 
 }
 
@@ -52,18 +40,6 @@
         background-color: #f0f0f0;
     }
 
-    &.selected{
-        background-color: #f0f0f0;
-    }
-
-    &.disabled{
-        color: #999;
-        cursor: not-allowed;
-    }
-
-    &.error{
-        color: #f00;
-    }
 
     
 

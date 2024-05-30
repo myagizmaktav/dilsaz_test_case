@@ -11,13 +11,13 @@
         outline: none;
         border-color: #007bff;
     }
-    &.error{
+    &-error{
         border-color: red;
     }
-    &.success{
+    &-success{
         border-color: green;
     }
-    &.disabled{
+    &-disabled{
         background-color: #f9f9f9;
         cursor: not-allowed;
     }

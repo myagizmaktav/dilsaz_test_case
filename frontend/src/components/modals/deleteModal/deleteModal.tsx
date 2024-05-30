@@ -1,16 +1,15 @@
 import React from "react";
 
 import { modalAtom } from "@/data/modal";
-
 import { todoAtom, rawTodoAtom } from "@/data/todo";
 import { useAtom } from "jotai";
-
+import { Button } from "../../button/button";
+import styles from "./deleteModal.module.scss";
 export const DeleteModal = () => {
   const [popup, setPopup] = useAtom(modalAtom);
   const hideInfo = () => {
     setPopup({
       visible: false,
-
       type: "",
     });
   };
@@ -26,22 +25,10 @@ export const DeleteModal = () => {
       <div>
         <p>Are you sure you want to delete this item?</p>
       </div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-        }}
-      >
-        <button
-          style={{
-            background: "#BEBEBE",
-            color: "white",
-            padding: "5px 30px 5px 30px",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-          onClick={() => {
+      <div className={styles.deleteButton}>
+        <Button
+          title="Yes"
+          onclick={() => {
             const index = data.findIndex((d) => d.id === popupData?.id);
             const newData = [...data];
             newData.splice(index, 1);
@@ -52,21 +39,9 @@ export const DeleteModal = () => {
             setRawData(newRawData);
             hideInfo();
           }}
-        >
-          Yes
-        </button>
-        <button
-          onClick={hideInfo}
-          style={{
-            background: "#2277e0",
-            color: "white",
-            padding: "5px 30px 5px 30px",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          No
-        </button>
+          backgroundColor="#BEBEBE"
+        />
+        <Button title="No" onclick={hideInfo} backgroundColor="#2277e0" />
       </div>
     </div>
   );

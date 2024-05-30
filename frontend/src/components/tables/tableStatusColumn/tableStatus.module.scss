@@ -1,0 +1,47 @@
+
+.urgent{
+    color: #fff;
+    background: red;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+
+.regular{
+    color: #fff;
+    background: orange;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+.trivial{
+
+    color: #fff;
+    background: blue;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.tagWrapper{
+    display: flex;
+    padding-left: 5px;
+    align-items: center;
+    height: 175px;
+}
+
+
+
+.tableColumnWrapper{
+    background: #e4eafd;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tableColumnTitle{
+    color:gray;
+    font-weight: bold;
+}

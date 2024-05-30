@@ -2,11 +2,12 @@ import { modalAtom } from "@/data/modal";
 import { useAtom } from "jotai";
 
 import ReactModal from "react-modal";
-import { AddModal } from "../addModal";
-import { DeleteModal } from "../deleteModal";
-import { EditModal } from "../editModal";
+import { AddModal } from "../addModal/addModal";
+import { DeleteModal } from "../deleteModal/deleteModal";
+import { EditModal } from "../editModal/editModal";
 import { CloseIcon } from "@/assets/closeIcon";
 
+import styles from "./modal.module.scss";
 const customStyles = {
   content: {
     top: "50%",
@@ -36,32 +37,15 @@ export function Modal() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div
-          style={{
-            minWidth: "300px",
-            minHeight: "200px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <p>{}EDIT</p>
+        <div className={styles.modalWrapper}>
+          <div className={styles.titleWrapper}>
+            <p>EDIT</p>
 
             <div onClick={hideInfo}>
               <CloseIcon />
             </div>
           </div>
-          <div
-            style={{
-              borderBottom: "1px solid black",
-              width: "100%",
-              marginTop: "10px",
-              marginBottom: "10px",
-            }}
-          />
+          <div className={styles.modalBar} />
 
           {popup.type === "Add" && <AddModal />}
           {popup.type === "Delete" && <DeleteModal />}

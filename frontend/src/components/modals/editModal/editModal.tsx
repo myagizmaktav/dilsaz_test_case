@@ -2,10 +2,10 @@ import { modalAtom } from "@/data/modal";
 import { todoAtom, rawTodoAtom } from "@/data/todo";
 import { useAtom, useAtomValue } from "jotai";
 import { priorityAtom } from "@/data/priority";
-import { Select } from "../select/select";
+import { Select } from "../../select/select";
 import { useState } from "react";
-import { Button } from "../button/button";
-
+import { Button } from "../../button/button";
+import styles from "./editModal.module.scss";
 export const EditModal = () => {
   const [popup, setPopup] = useAtom(modalAtom);
   const [data, setData] = useAtom(todoAtom);
@@ -22,16 +22,7 @@ export const EditModal = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        flexDirection: "column",
-        justifyContent: "space-around",
-        alignItems: "start",
-      }}
-    >
+    <div className={styles.editWrapper}>
       <div
         style={{
           width: "100%",
@@ -51,74 +42,21 @@ export const EditModal = () => {
         />
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          flexWrap: "wrap",
-          gap: "5px",
-          marginTop: "10px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "5px",
-          }}
-        >
-          <p
-            style={{
-              color: "gray",
-              fontWeight: "bold",
-            }}
-          >{`ID :`}</p>{" "}
-          {popupData?.id}
+      <div className={styles.dataList}>
+        <div className={styles.dataCell}>
+          <p className={styles.dataTitle}>{`ID :`}</p> {popupData?.id}
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "5px",
-          }}
-        >
-          <p
-            style={{
-              color: "gray",
-              fontWeight: "bold",
-            }}
-          >{`Description :`}</p>{" "}
+        <div className={styles.dataCell}>
+          <p className={styles.dataTitle}>{`Description :`}</p>{" "}
           {popupData?.description}
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "5px",
-          }}
-        >
-          <p
-            style={{
-              color: "gray",
-              fontWeight: "bold",
-            }}
-          >{`Updated At :`}</p>
+        <div className={styles.dataCell}>
+          <p className={styles.dataTitle}>{`Updated At :`}</p>
           {popupData?.updated_at}
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "5px",
-          }}
-        >
-          <p
-            style={{
-              color: "gray",
-              fontWeight: "bold",
-            }}
-          >{`Created At :`}</p>{" "}
+        <div className={styles.dataCell}>
+          <p className={styles.dataTitle}>{`Created At :`}</p>{" "}
           {popupData?.created_at}
         </div>
       </div>

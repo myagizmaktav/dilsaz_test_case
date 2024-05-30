@@ -1,45 +1,36 @@
 import { sortingAtom } from "@/data/sorting";
-import { todoAtom } from "@/data/todo";
-import { useWindowSize } from "@/hook/useDimension";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { TableTextColumn } from "../table/TableTextColumn/TableTextColumn";
-import { TableStatusColumn } from "../table/TableStatusColumn/TableStatusColumn";
-import { TableActionColumn } from "../table/TableActionColumn/TableActionColumn";
-import { modalAtom } from "@/data/modal";
 
-export const Tables = () => {
-  const todo = useAtomValue(todoAtom);
+import { useWindowSize } from "@/hook/useDimension";
+import { useAtom, useSetAtom } from "jotai";
+import { TableActionColumn } from "./tableActionColumn/tableActionColumn";
+import { modalAtom } from "@/data/modal";
+import { Todo } from "@/types/todoType";
+import styles from "./tables.module.scss";
+import { TableTextColumn } from "./tableTextColumn/tableTextColumn";
+import { TableStatusColumn } from "./tableStatusColumn/tableStatusColumn";
+
+type tableProps = {
+  todo: Todo[];
+};
+export const Tables = ({ todo }: tableProps) => {
   const [sortingPosition, setSortingPosition] = useAtom(sortingAtom);
   const setPopup = useSetAtom(modalAtom);
   const { isBigScreen } = useWindowSize();
 
   return (
-    <div
-      style={{
-        flexDirection: "row",
-        display: "flex",
-      }}
-    >
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
-        {isBigScreen && (
+    <div className={styles.tablesWrapper}>
+      {isBigScreen && (
+        <div className={styles.flex}>
           <TableTextColumn
             field="id"
             data={todo}
             setSortingPosition={setSortingPosition}
             sortingPosition={sortingPosition}
           />
-        )}
-      </div>
+        </div>
+      )}
 
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
+      <div className={styles.flex}>
         <TableTextColumn
           field="description"
           data={todo}
@@ -47,11 +38,7 @@ export const Tables = () => {
           sortingPosition={sortingPosition}
         />
       </div>
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
+      <div className={styles.flex}>
         <TableStatusColumn
           field="status"
           data={todo}
@@ -60,12 +47,8 @@ export const Tables = () => {
         />
       </div>
 
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
-        {isBigScreen && (
+      {isBigScreen && (
+        <div className={styles.flex}>
           <TableTextColumn
             field="updated_at"
             isDate={true}
@@ -73,15 +56,11 @@ export const Tables = () => {
             setSortingPosition={setSortingPosition}
             sortingPosition={sortingPosition}
           />
-        )}
-      </div>
+        </div>
+      )}
 
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
-        {isBigScreen && (
+      {isBigScreen && (
+        <div className={styles.flex}>
           <TableTextColumn
             field="created_at"
             isDate={true}
@@ -89,14 +68,10 @@ export const Tables = () => {
             setSortingPosition={setSortingPosition}
             sortingPosition={sortingPosition}
           />
-        )}
-      </div>
+        </div>
+      )}
 
-      <div
-        style={{
-          flex: 1,
-        }}
-      >
+      <div className={styles.flex}>
         <TableActionColumn data={todo} setPopup={setPopup} />
       </div>
     </div>

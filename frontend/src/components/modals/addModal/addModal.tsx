@@ -3,7 +3,7 @@ import { priorityAtom } from "@/data/priority";
 import { rawTodoAtom, todoAtom } from "@/data/todo";
 import { useAtom, useAtomValue } from "jotai";
 import React from "react";
-
+import styles from "./addModal.module.scss";
 export const AddModal = () => {
   const popup = useAtomValue(modalAtom);
   const [data, setData] = useAtom(todoAtom);
@@ -12,16 +12,7 @@ export const AddModal = () => {
   const popupData = popup.data;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        flexDirection: "column",
-        justifyContent: "space-around",
-        alignItems: "start",
-      }}
-    >
+    <div className={styles.addModalWrapper}>
       <div>
         <select
           name="status"
@@ -46,20 +37,8 @@ export const AddModal = () => {
         </select>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          flexWrap: "wrap",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "5px",
-          }}
-        >
+      <div className={styles.addModaInputWrapper}>
+        <div className={styles.addInput}>
           <label htmlFor="description">Description:</label>
           <input
             type="text"

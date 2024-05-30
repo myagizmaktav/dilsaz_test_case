@@ -3,16 +3,20 @@ import { Inter } from "next/font/google";
 import { useInitialHook } from "@/hook/initialHook";
 import styles from "./main.module.scss";
 import { Tables } from "../tables/tables";
-import { Modal } from "../modals/modal/modal";
+
 import { Filtering } from "../filtering/filtering";
 import { useWindowSize } from "@/hook/useDimension";
 import { Add } from "../add/add";
+import { todoAtom } from "@/data/todo";
+import { useAtomValue } from "jotai";
+import DynamicModal from "../modals/modal/dynamicModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const Main = () => {
   useInitialHook();
   const { isBigScreen } = useWindowSize();
+  const todo = useAtomValue(todoAtom);
   return (
     <>
       <Head>
@@ -27,8 +31,9 @@ export const Main = () => {
         <div className={styles.toMiddle}>
           <Add />
           <Filtering />
-          <Modal />
-          <Tables />
+
+          <Tables todo={todo} />
+          <DynamicModal />
         </div>
 
         {isBigScreen && <div className={styles.side} />}

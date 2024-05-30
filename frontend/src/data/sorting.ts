@@ -3,7 +3,7 @@ import { atom } from "jotai";
 
 export const sortingAtom = atom<Sorting>({
   position: "asc",
-  field: "created_at",
+  field: "status",
   search: "",
   priority: "Priority(All)",
 });
